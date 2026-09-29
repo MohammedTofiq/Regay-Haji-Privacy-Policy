@@ -1,0 +1,365 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Regay Haji Privacy</title>
+<style>
+  :root{
+    /* Light Mode Defaults */
+    --bg-color: #ffffff;
+    --card-bg: #faf8ec;
+    --text-color: #3b4326;
+    --heading-color: #2a3517;
+    --border-color: #e7e5d3;
+    --link-color: #616b37;
+    --muted-color: #6b6f4c;
+    --accent-soft: #eef0d9;
+    --shadow: 0 1px 2px rgba(42,53,23,.05), 0 10px 24px -14px rgba(42,53,23,.16);
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      /* Dark Mode Theme */
+      --bg-color: #1c2312;
+      --card-bg: #262e19;
+      --text-color: #d9d9bd;
+      --heading-color: #faf5dc;
+      --border-color: #3a4527;
+      --link-color: #b0be72;
+      --muted-color: #a0a67f;
+      --accent-soft: rgba(176,190,114,.15);
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 30px -16px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg-color: #1c2312;
+    --card-bg: #262e19;
+    --text-color: #d9d9bd;
+    --heading-color: #faf5dc;
+    --border-color: #3a4527;
+    --link-color: #b0be72;
+    --muted-color: #a0a67f;
+    --accent-soft: rgba(176,190,114,.15);
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 30px -16px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg-color); color:var(--text-color);
+    font-family:var(--sans); font-size:16px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    transition: background-color .3s ease, color .3s ease;
+    padding-inline: max(16px, env(safe-area-inset-left,0px)) max(16px, env(safe-area-inset-right,0px));
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms!important; transition-duration:.01ms!important;} }
+  a{color:var(--link-color);}
+  a:focus-visible, summary:focus-visible, button:focus-visible{outline:2px solid var(--link-color); outline-offset:2px; border-radius:3px;}
+  h1,h2,h3{font-family:var(--sans); font-weight:700; color:var(--heading-color); text-wrap:balance; margin:0;}
+  p{margin:0 0 14px; max-width:66ch;}
+  ul,ol{margin:0 0 14px; padding-left:22px;}
+  li{margin-bottom:6px; max-width:64ch;}
+  code{font-family:var(--mono); font-size:.92em;}
+
+  .page{max-width:1180px; margin:0 auto; padding-block:0 64px;}
+
+  header.hero{
+    padding-block: 44px 30px;
+    border-bottom:1px solid var(--border-color);
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--link-color); display:flex; align-items:center; gap:9px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--link-color);}
+  h1.title{font-size:clamp(30px,5vw,46px); line-height:1.08; letter-spacing:-.01em;}
+  .app-names{font-family:var(--mono); font-size:13.5px; color:var(--muted-color); margin-top:12px;}
+  .dek{font-size:17px; color:var(--text-color); margin-top:16px; max-width:62ch;}
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:22px;
+    font-family:var(--mono); font-size:12.5px; color:var(--muted-color);
+  }
+  .meta-row strong{color:var(--text-color); font-weight:600;}
+
+  /* plain-language summary */
+  .summary{
+    margin-top:28px; padding:16px 20px; background-color:var(--card-bg); border:1px solid var(--border-color);
+    border-radius:8px; box-shadow:var(--shadow);
+  }
+  .summary h2{font-size:19px; margin-bottom:14px;}
+  .summary-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 24px;}
+  @media (max-width:640px){ .summary-grid{grid-template-columns:1fr;} }
+  .summary-item{display:flex; gap:10px; align-items:flex-start; font-size:14.5px; color:var(--text-color);}
+  .summary-item .ok{color:var(--link-color); font-weight:700; flex:0 0 auto;}
+  .summary-item b{color:var(--heading-color); font-weight:600;}
+
+  /* layout: nav + content */
+  .layout{display:grid; grid-template-columns:230px 1fr; gap:44px; margin-top:40px; align-items:start;}
+  @media (max-width:860px){ .layout{grid-template-columns:1fr; gap:22px;} }
+
+  nav.toc{position:sticky; top:24px; align-self:start;}
+  @media (max-width:860px){ nav.toc{position:static;} }
+  nav.toc .toc-label{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-color); margin-bottom:10px; font-weight:600;}
+  nav.toc ol{list-style:none; margin:0; padding:0; counter-reset:toc; display:flex; flex-direction:column; gap:2px;}
+  nav.toc li{counter-increment:toc; margin:0;}
+  nav.toc a{
+    display:flex; gap:10px; padding:7px 8px; border-radius:7px; font-size:13.5px;
+    color:var(--text-color); text-decoration:none; line-height:1.3;
+  }
+  nav.toc a::before{
+    content:counter(toc); font-family:var(--mono); font-size:11.5px; color:var(--muted-color);
+    flex:0 0 auto; width:18px;
+  }
+  nav.toc a:hover{background-color:var(--card-bg); color:var(--heading-color);}
+
+  @media (max-width:860px){
+    nav.toc details{background-color:var(--card-bg); border:1px solid var(--border-color); border-radius:8px; padding:6px 14px;}
+    nav.toc summary{font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--heading-color); padding:10px 0; cursor:pointer;}
+    nav.toc ol{padding:4px 0 10px;}
+  }
+
+  main.doc section{
+    padding-block:26px; border-bottom:1px solid var(--border-color); scroll-margin-top:20px;
+  }
+  main.doc section:last-child{border-bottom:none;}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:14px;}
+  .sec-num{font-family:var(--mono); font-size:14px; color:var(--link-color); font-weight:600;}
+  h2.sec-title{font-size:22px;}
+  h3.sub{font-family:var(--sans); font-weight:700; font-size:15px; color:var(--heading-color); margin:18px 0 8px;}
+
+  .fact-list{list-style:none; padding:0; margin:0 0 14px; display:flex; flex-direction:column; gap:10px;}
+  .fact-list li{
+    background-color:var(--card-bg); border:1px solid var(--border-color); border-radius:8px;
+    padding:12px 14px; font-size:14.5px; color:var(--text-color); max-width:70ch;
+  }
+  .fact-list b{color:var(--heading-color);}
+
+  .not-collected{
+    margin-top:6px; padding:14px 16px; background-color:var(--accent-soft); border-radius:8px; font-size:14.5px; color:var(--heading-color);
+  }
+  .not-collected b{color:var(--link-color);}
+
+  footer.doc{
+    margin-top:10px; padding-top:26px; color:var(--muted-color); font-size:13px; font-family:var(--mono);
+    display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between;
+  }
+</style>
+
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">Privacy Policy · Mobile Application</div>
+    <h1 class="title">ڕێگای حاجی — Regay Haji</h1>
+    <div class="app-names">Hajj &amp; Umrah pilgrimage directory and travel-agency platform</div>
+    <p class="dek">This policy explains what information the Regay Haji mobile app collects, how it is used, who it is shared with, and the choices you have, written in plain language.</p>
+    <div class="meta-row">
+      <span><strong>Effective Date:</strong> September 30, 2026</span>
+      <span><strong>Applies to:</strong> Customer &amp; Merchant (travel agency) apps</span>
+      <span><strong>Contact:</strong> <a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a></span>
+    </div>
+
+    <div class="summary">
+      <h2>In plain terms</h2>
+      <div class="summary-grid">
+        <div class="summary-item"><span class="ok">✓</span><span>We collect the account info you give us (name, email, optional phone/photo) plus, if you use it, an identifier from Google or Apple Sign-In.</span></div>
+        <div class="summary-item"><span class="ok">✓</span><span>Your password is never stored in a readable form — not even we can see it.</span></div>
+        <div class="summary-item"><span class="ok">✓</span><span>We do <b>not</b> use any advertising, analytics, or tracking SDKs.</span></div>
+        <div class="summary-item"><span class="ok">✓</span><span>We do <b>not</b> process payments or store card/bank details in the app — payment is arranged directly with the travel agency.</span></div>
+        <div class="summary-item"><span class="ok">✓</span><span>The app does <b>not</b> access your device's GPS location, contacts, or microphone.</span></div>
+        <div class="summary-item"><span class="ok">✓</span><span>You can permanently delete your customer account, and its personal details, directly inside the app.</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc">
+      <div class="toc-label" style="display:block;">
+        Contents
+      </div>
+      <details open id="toc-desktop">
+        <summary style="display:none;"></summary>
+        <ol>
+          <li><a href="#s1">Introduction</a></li>
+          <li><a href="#s2">Information We Collect</a></li>
+          <li><a href="#s3">How We Use Information</a></li>
+          <li><a href="#s4">Google Sign-In &amp; Third Parties</a></li>
+          <li><a href="#s5">Backend, API &amp; Data Storage</a></li>
+          <li><a href="#s6">Data Sharing</a></li>
+          <li><a href="#s7">Data Security</a></li>
+          <li><a href="#s8">Data Retention</a></li>
+          <li><a href="#s9">Account &amp; Data Deletion</a></li>
+          <li><a href="#s10">Your Privacy Rights</a></li>
+          <li><a href="#s11">Children's Privacy</a></li>
+          <li><a href="#s12">International Transfers</a></li>
+          <li><a href="#s13">Changes to This Policy</a></li>
+          <li><a href="#s14">Contact Information</a></li>
+        </ol>
+      </details>
+    </nav>
+
+    <main class="doc">
+
+      <section id="s1">
+        <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">Introduction</h2></div>
+        <p>Regay Haji ("the App", "we", "us") is a mobile directory and coordination platform that connects pilgrims planning Hajj or Umrah with licensed travel agencies, and gives those agencies tools to manage their trips, passengers, and rooming. The App has two sides: a <b>Customer</b> app for pilgrims browsing and saving trips, and a <b>Merchant</b> app for travel agency staff managing their trips and passenger lists.</p>
+        <p>This policy applies to both. It describes what personal information we collect through the App, why, how it is stored and protected, and the rights and choices available to you. By creating an account or using the App, you agree to the practices described here.</p>
+        <p>The App is developed and operated by <b>HM Studio</b>.</p>
+      </section>
+
+      <section id="s2">
+        <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Information We Collect</h2></div>
+
+        <h3 class="sub">a) Information you provide when creating a Customer or Merchant account</h3>
+        <ul>
+          <li>Full name and email address (required)</li>
+          <li>Password — you choose it; we never see or store the original, only a one-way scrambled version we cannot reverse</li>
+          <li>Phone number (optional)</li>
+          <li>Profile photo (optional — you choose to take one with your camera or pick one from your gallery)</li>
+          <li>Preferred language (Kurdish, Arabic, or English)</li>
+        </ul>
+
+        <h3 class="sub">b) Information from Google Sign-In or Sign in with Apple, if you use them</h3>
+        <p>If you choose to sign in with Google or Apple instead of a password, the provider sends the App a unique account identifier that lets us recognize you on future logins, plus — only if the provider itself reports it as verified, and only for Apple, also optionally your name on the very first sign-in — your email address. We independently re-verify this credential directly with Google's or Apple's own servers; we never receive or see your Google or Apple password.</p>
+
+        <h3 class="sub">c) Information travel agencies (Merchants) provide about their business</h3>
+        <ul>
+          <li>Agency name, description, and logo</li>
+          <li>Business contact details: phone, WhatsApp number, email</li>
+          <li>Office address and a map location the agency sets for their own office — this is entered by the agency, not read from any user's device GPS. The App does not request or use device location.</li>
+        </ul>
+
+        <h3 class="sub">d) Information travel agencies enter about the pilgrims (passengers) they book</h3>
+        <p>When an agency registers a passenger for a trip inside the App, agency staff may enter: the passenger's full name, phone number, payment amount and status, room assignment, and — optionally — upload photos of the passenger's ID card, passport, and/or a personal photo, to keep travel documents organized for the trip. This information is entered and controlled by the travel agency for the pilgrims they are booking, who may or may not be the person using the App. It is only ever visible to that agency's own staff and platform administrators — never to other agencies or other customers.</p>
+
+        <h3 class="sub">e) Content you create in the Customer app</h3>
+        <ul>
+          <li>Trips you bookmark/save</li>
+          <li>Your personal packing-checklist selections</li>
+          <li>In-app notifications sent to you by an agency or by us (these appear only inside the App's notification inbox — we do not send push notifications through Google/Apple's push services)</li>
+        </ul>
+
+        <h3 class="sub">f) Security logs</h3>
+        <p>When a login attempt fails, our server temporarily logs the email address that was attempted and the IP address it came from, purely to detect and slow down repeated break-in attempts against an account. This log is for our own security monitoring — it is never shown to any user and never shared externally. These logs are kept only as long as needed for security purposes and are then deleted.</p>
+
+        <div class="not-collected">
+          <b>What we do not collect:</b> payment card or bank details, precise device location, your contacts, microphone/audio, or any browsing activity outside the App.
+        </div>
+      </section>
+
+      <section id="s3">
+        <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">How We Use Information</h2></div>
+        <ul class="fact-list" style="list-style:none;">
+          <li><b>To create and secure your account</b> — verifying your login, keeping your session signed in, and protecting against unauthorized access attempts.</li>
+          <li><b>To operate the core service</b> — showing you trips and agencies to browse, letting you save/bookmark trips and track your packing checklist, and letting agencies manage their own trips, passengers, and room assignments.</li>
+          <li><b>To let you sign in with Google or Apple</b>, if you choose to, as a faster alternative to a password.</li>
+          <li><b>To show content in your preferred language</b> (Kurdish, Arabic, or English).</li>
+          <li><b>To respond to support requests</b> you send us.</li>
+          <li><b>To let you delete your account</b> when you choose to.</li>
+        </ul>
+        <p>We do <b>not</b> use your information to show you ads, and we do not build advertising or tracking profiles — the App has no advertising or analytics software of any kind built into it.</p>
+      </section>
+
+      <section id="s4">
+        <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Google Sign-In and Third-Party Services</h2></div>
+        <p>Google and Apple act only as <b>identity providers</b> here — they confirm "this is really this person's Google/Apple account" and nothing more. Our own server independently re-checks that confirmation directly against Google's and Apple's official servers before creating a session, and our server — not Google or Apple — is what actually keeps you signed in afterward.</p>
+        <p>The only outside services the App connects to are:</p>
+        <ul class="fact-list" style="list-style:none;">
+          <li><b>Google Sign-In (Google LLC)</b> — used only if you tap "Continue with Google," to verify your identity.</li>
+          <li><b>Sign in with Apple (Apple Inc.)</b> — used only if you tap "Sign in with Apple," to verify your identity.</li>
+          <li><b>Cloud hosting and database providers</b> — run our backend server and store the App's data on our behalf.</li>
+        </ul>
+        <p>The App does <b>not</b> include any advertising network, analytics tool, or crash-reporting service (for example, no Google Analytics, Firebase, AdMob, or Sentry-type tool is present).</p>
+      </section>
+
+      <section id="s5">
+        <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Backend, API &amp; Data Storage</h2></div>
+        <p>The App communicates with our own backend server over an encrypted HTTPS connection — the App is built to refuse an unencrypted connection to any production server address. Your data is stored in a database that only our backend server can reach directly; it is never exposed to the public internet on its own.</p>
+        <h3 class="sub">What's stored on your device</h3>
+        <p>After you log in, your device stores only a secure session token — kept in your device's encrypted secure storage, not as plain text — so you don't have to log in again every time you open the App. Your chosen theme (light/dark) and language preference are also saved on your device. We do not cache your password, profile details, or passenger data locally on your device beyond what's needed to display the screen you're currently viewing.</p>
+        <h3 class="sub">Uploaded photos and documents</h3>
+        <p>Profile photos, agency logos, and passenger documents (ID card/passport/photo) you or an agency upload are stored on our backend's file storage. Passenger identification documents are only ever retrievable by the specific agency staff authorized for that trip and by platform administrators — there is no public link to them.</p>
+      </section>
+
+      <section id="s6">
+        <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Data Sharing</h2></div>
+        <p>We do not sell your personal information, and we do not share it with advertisers or data brokers — the App has no advertising integrations of any kind. We share information only in these specific cases:</p>
+        <ul>
+          <li><b>With the travel agency you interact with</b> — if you book with or are registered as a passenger by an agency, that agency's staff can see the booking/passenger details relevant to their own trips.</li>
+          <li><b>With Google or Apple</b> — only the identity token needed to verify your sign-in, if you use that option.</li>
+          <li><b>With our infrastructure providers</b> (our server host and database host) — solely so they can run the servers that store and serve the App's data on our behalf. They do not use your data for their own purposes.</li>
+          <li><b>If required by law</b> — for example, in response to a valid legal request.</li>
+        </ul>
+        <h3 class="sub">Booking and payment</h3>
+        <p>The App tracks a payment <i>status</i> and amount (e.g. "paid," "partially paid") that agency staff record manually — but the App itself does not process payments, does not connect to any payment gateway, and does not collect or store your card number, bank details, or other payment credentials. Any actual payment is arranged directly between you and the travel agency, outside the App.</p>
+      </section>
+
+      <section id="s7">
+        <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Data Security</h2></div>
+        <ul>
+          <li>Your password is never stored in a form that can be read back — not by us, not by anyone who might access our database.</li>
+          <li>Traffic between the App and our server is encrypted (HTTPS); the App is built to refuse to send data to a production server over an unencrypted connection.</li>
+          <li>Access to agency and administrative data is restricted by account roles and permissions built into the system — an agency can only see its own trips and passengers, and administrative access is limited to authorized staff.</li>
+          <li>Repeated failed login attempts are automatically detected and throttled to slow down break-in attempts.</li>
+        </ul>
+        <p>No method of transmission or storage is 100% secure, and we cannot guarantee absolute security — but we've built the App's authentication and access-control system with these protections from the ground up, not added on afterward.</p>
+      </section>
+
+      <section id="s8">
+        <div class="sec-head"><span class="sec-num">08</span><h2 class="sec-title">Data Retention</h2></div>
+        <p>We keep your account information for as long as your account remains active. If you delete your Customer account (see §9), your personal details are immediately anonymized rather than kept.</p>
+        <p>Trip and booking records connected to an account may be retained by the relevant travel agency in de-identified form after account deletion, for their own ordinary business record-keeping (for example, so a trip's historical passenger count stays accurate) — these records are no longer linked back to your name, email, or phone once your account is deleted.</p>
+        <p>Security logs described in §2(f) are kept only as long as needed for security purposes and are then deleted.</p>
+      </section>
+
+      <section id="s9">
+        <div class="sec-head"><span class="sec-num">09</span><h2 class="sec-title">Account and Data Deletion</h2></div>
+        <h3 class="sub">Customer accounts</h3>
+        <p>You can permanently delete your own Customer account at any time, directly in the App: go to <b>Profile → Delete Account</b>, and confirm in the dialog that appears. Once confirmed:</p>
+        <ul>
+          <li>Your name is replaced with "Deleted User," and your email and phone number are replaced with anonymized placeholders</li>
+          <li>Your profile photo is removed</li>
+          <li>Your password is invalidated so it can never be used again</li>
+          <li>Any linked Google or Apple sign-in is disconnected from the account</li>
+          <li>You are immediately signed out, and that account can never be signed back into</li>
+        </ul>
+        <p>This action cannot be undone. Historical records that other people's trips depend on (such as a past bookmark count) are kept only in this anonymized form, never tied back to your identity again.</p>
+        <h3 class="sub">Merchant (travel agency) accounts</h3>
+        <p>The App does not currently include a self-service "Delete Account" option for Merchant/agency accounts, since an agency account is connected to shared trip and passenger records that a self-service delete isn't designed to safely unwind. To request deletion or closure of a Merchant account, contact us at <a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a>.</p>
+        <h3 class="sub">Passenger records entered by an agency</h3>
+        <p>If you are a pilgrim whose details were entered by a travel agency (see §2d) and you did not create the App account yourself, you can request access to or removal of that information by contacting the agency directly, or by contacting us at <a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a> and we will help route your request.</p>
+      </section>
+
+      <section id="s10">
+        <div class="sec-head"><span class="sec-num">10</span><h2 class="sec-title">Your Privacy Rights</h2></div>
+        <p>You can view and update most of your own account information — name, phone, profile photo, language — directly in the App under <b>Profile → Edit Profile</b>. For anything you can't change yourself, or to ask what information we hold about you, contact us at <a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a>.</p>
+        <p>Depending on where you live, you may have additional legal rights over your personal data — for example, rights to access, correct, export, or request deletion of it, under laws such as the EU/UK General Data Protection Regulation or similar regional privacy laws. Where such rights apply, we will respond to a verified request within a reasonable time.</p>
+      </section>
+
+      <section id="s11">
+        <div class="sec-head"><span class="sec-num">11</span><h2 class="sec-title">Children's Privacy</h2></div>
+        <p>The App is not directed at children and is not intended for use by anyone below the minimum age required in their country to consent to use of an online service on their own. We do not knowingly collect personal information from children.</p>
+        <p>If you believe a child has provided us with personal information, please contact us at <a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a> and we will remove it.</p>
+      </section>
+
+      <section id="s12">
+        <div class="sec-head"><span class="sec-num">12</span><h2 class="sec-title">International Data Transfers</h2></div>
+        <p>Our backend server and database run on third-party cloud infrastructure, which may be located in a different country than the one you live in. As a result, your information may be processed or stored outside your home country.</p>
+      </section>
+
+      <section id="s13">
+        <div class="sec-head"><span class="sec-num">13</span><h2 class="sec-title">Changes to This Privacy Policy</h2></div>
+        <p>We may update this Privacy Policy from time to time — for example, if we add a new feature that changes what information we collect. When we do, we'll update the Effective Date at the top of this page. If changes are significant, we'll make a reasonable effort to let you know inside the App. We encourage you to review this page periodically.</p>
+      </section>
+
+      <section id="s14">
+        <div class="sec-head"><span class="sec-num">14</span><h2 class="sec-title">Contact Information</h2></div>
+        <p>If you have questions about this Privacy Policy, or want to exercise any of the rights described above, contact us at:</p>
+        <p style="font-family:var(--mono); font-size:16px;"><a href="mailto:hmexplorer77@gmail.com">hmexplorer77@gmail.com</a></p>
+      </section>
+
+      <footer class="doc">
+        <span>Regay Haji · Privacy Policy</span>
+        <span>HM Studio</span>
+        <span>Effective Date: September 30, 2026</span>
+      </footer>
+    </main>
+  </div>
+</div>
+
+</body></html>
